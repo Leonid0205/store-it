@@ -1,13 +1,18 @@
-"use client";
+'use client';
 
-import { navItems } from "@/constants";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React from "react";
+import { avatarPlaceholderUrl, navItems } from '@/constants';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React from 'react';
 
-const Sidebar = () => {
+interface Props {
+  fullName: string;
+  email: string;
+  avatar: string;
+}
+const Sidebar = ({ fullName, email, avatar }: Props) => {
   const pathname = usePathname();
   return (
     <aside className="sidebar">
@@ -30,11 +35,15 @@ const Sidebar = () => {
       <nav className="sidebar-nav">
         <ul className="flex flex-1 flex-col gap-6">
           {navItems.map(({ name, icon, url }) => (
-            <Link key={name} href={url} className="lg:w-full">
+            <Link
+              key={name}
+              href={url}
+              className="lg:w-full"
+            >
               <li
                 className={cn(
-                  "sidebar-nav-item",
-                  pathname === url && "shad-active"
+                  'sidebar-nav-item',
+                  pathname === url && 'shad-active'
                 )}
               >
                 <Image
@@ -43,8 +52,8 @@ const Sidebar = () => {
                   width={24}
                   height={24}
                   className={cn(
-                    "nav-icon",
-                    pathname === url && "nav-icon-active"
+                    'nav-icon',
+                    pathname === url && 'nav-icon-active'
                   )}
                 />
                 <p className="hidden lg:block">{name}</p>
@@ -60,6 +69,18 @@ const Sidebar = () => {
         height={418}
         className="w-full"
       />
+      <div className="sidebar-user-info">
+        <Image
+          src={avatar || avatarPlaceholderUrl}
+          alt="avatar"
+          width={44}
+          height={44}
+        />
+        <div className="hidden lg:block">
+          <p className="subtitle-2 capitalize">{fullName}</p>
+          <p className="caption">{email}</p>
+        </div>
+      </div>
     </aside>
   );
 };
