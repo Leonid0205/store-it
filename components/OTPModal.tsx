@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 import {
   AlertDialog,
@@ -10,17 +10,17 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+} from '@/components/ui/alert-dialog';
 
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
-} from "@/components/ui/input-otp";
-import Image from "next/image";
-import { Button } from "./ui/button";
-import { sendEmailOTP, verifySecret } from "@/lib/actions/user.actions";
-import { useRouter } from "next/navigation";
+} from '@/components/ui/input-otp';
+import Image from 'next/image';
+import { Button } from './ui/button';
+import { sendEmailOTP, verifySecret } from '@/lib/actions/user.actions';
+import { useRouter } from 'next/navigation';
 
 const OTPModal = ({
   accountId,
@@ -31,7 +31,7 @@ const OTPModal = ({
 }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(true);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -43,10 +43,10 @@ const OTPModal = ({
         password,
       });
       if (sessionId) {
-        router.push("/");
+        router.push('/');
       }
     } catch (error) {
-      console.log("Failed to verify OTP");
+      console.log(error, 'Failed to verify OTP');
     }
   };
   const handleResendOtp = async () => {
@@ -54,7 +54,10 @@ const OTPModal = ({
   };
 
   return (
-    <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
+    <AlertDialog
+      open={isOpen}
+      onOpenChange={setIsOpen}
+    >
       <AlertDialogContent className="shad-alert-dialog">
         <AlertDialogHeader className="relative flex justify-center">
           <AlertDialogTitle className="h2 text-center">
@@ -69,18 +72,40 @@ const OTPModal = ({
             />
           </AlertDialogTitle>
           <AlertDialogDescription className="subtitle-2 text-center text-light-100">
-            We&apos;ve sent a code to{" "}
+            We&apos;ve sent a code to{' '}
             <span className="pl-1 text-brand">{email}</span>
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <InputOTP maxLength={6} value={password} onChange={setPassword}>
+        <InputOTP
+          maxLength={6}
+          value={password}
+          onChange={setPassword}
+        >
           <InputOTPGroup className="shad-otp">
-            <InputOTPSlot index={0} className="shad-otp-slot" />
-            <InputOTPSlot index={1} className="shad-otp-slot" />
-            <InputOTPSlot index={2} className="shad-otp-slot" />
-            <InputOTPSlot index={3} className="shad-otp-slot" />
-            <InputOTPSlot index={4} className="shad-otp-slot" />
-            <InputOTPSlot index={5} className="shad-otp-slot" />
+            <InputOTPSlot
+              index={0}
+              className="shad-otp-slot"
+            />
+            <InputOTPSlot
+              index={1}
+              className="shad-otp-slot"
+            />
+            <InputOTPSlot
+              index={2}
+              className="shad-otp-slot"
+            />
+            <InputOTPSlot
+              index={3}
+              className="shad-otp-slot"
+            />
+            <InputOTPSlot
+              index={4}
+              className="shad-otp-slot"
+            />
+            <InputOTPSlot
+              index={5}
+              className="shad-otp-slot"
+            />
           </InputOTPGroup>
         </InputOTP>
 
