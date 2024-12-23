@@ -1,16 +1,16 @@
-import Image from 'next/image';
 import React from 'react';
-import { cn, getFileIcon } from '../lib/utils';
+import Image from 'next/image';
+import { cn, getFileIcon } from '@/lib/utils';
 
 interface Props {
   type: string;
   extension: string;
   url?: string;
-  className?: string;
   imageClassName?: string;
+  className?: string;
 }
 
-const Thumbnail = ({
+export const Thumbnail = ({
   type,
   extension,
   url = '',
@@ -18,6 +18,7 @@ const Thumbnail = ({
   className,
 }: Props) => {
   const isImage = type === 'image' && extension !== 'svg';
+
   return (
     <figure className={cn('thumbnail', className)}>
       <Image
@@ -34,5 +35,4 @@ const Thumbnail = ({
     </figure>
   );
 };
-
 export default Thumbnail;

@@ -1,65 +1,67 @@
-export type FileType = "document" | "image" | "video" | "audio" | "other";
+/* eslint-disable no-unused-vars */
 
-export interface ActionType {
+declare type FileType = 'document' | 'image' | 'video' | 'audio' | 'other';
+
+declare interface ActionType {
   label: string;
   icon: string;
   value: string;
 }
 
-export interface SearchParamProps {
+declare interface SearchParamProps {
   params?: Promise<SegmentParams>;
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export interface UploadFileProps {
+declare interface UploadFileProps {
   file: File;
   ownerId: string;
   accountId: string;
   path: string;
 }
-export interface GetFilesProps {
+declare interface GetFilesProps {
   types: FileType[];
   searchText?: string;
   sort?: string;
   limit?: number;
 }
-export interface RenameFileProps {
+declare interface RenameFileProps {
   fileId: string;
   name: string;
   extension: string;
   path: string;
 }
-export interface UpdateFileUsersProps {
+declare interface UpdateFileUsersProps {
   fileId: string;
   emails: string[];
   path: string;
 }
-export interface DeleteFileProps {
+declare interface DeleteFileProps {
   fileId: string;
   bucketFileId: string;
   path: string;
 }
 
-export interface FileUploaderProps {
+declare interface FileUploaderProps {
   ownerId: string;
   accountId: string;
   className?: string;
 }
 
-export interface MobileNavigationProps {
+declare interface MobileNavigationProps {
   ownerId: string;
   accountId: string;
   fullName: string;
   avatar: string;
   email: string;
 }
-export interface SidebarProps {
+declare interface SidebarProps {
   fullName: string;
   avatar: string;
   email: string;
 }
 
-export interface ThumbnailProps {
+declare interface ThumbnailProps {
   type: string;
   extension: string;
   url: string;
@@ -67,7 +69,7 @@ export interface ThumbnailProps {
   imageClassName?: string;
 }
 
-export interface ShareInputProps {
+declare interface ShareInputProps {
   file: Models.Document;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onRemove: (email: string) => void;
